@@ -56,7 +56,7 @@ class TXO:
     def from_tx_hash(cls,tx_hash,n=0):
         tx = rpc_connection.getrawtransaction(tx_hash,True)
         print(tx['vout'])
-        owner = tx['scriptPubKey']['addresses']['address'][0]
+        owner = tx['scriptPubKey']['addresses'][0]
         owner_str = str(owner)
         value_satoshi = tx['value']/100000000
         print(owner)
