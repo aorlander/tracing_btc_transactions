@@ -26,15 +26,6 @@ class TXO:
             ret += tx.__str__(level+1)
         return ret
 
-    #def to_json(self):
-    #    fields = ['tx_hash','n','amount','owner']
-    #    json_dict = { field: self.__dict__[field] for field in fields }
-    #    json_dict.update( {'time': datetime.timestamp(self.time) } )
-    #    if len(self.inputs) > 0:
-    #        for txo in self.inputs:
-    #            json_dict.update( {'inputs': json.loads(txo.to_json()) } )
-    #    return json.dumps(json_dict, sort_keys=True, indent=4)
-      
     def to_json(self):
         fields = ['tx_hash', 'n', 'amount', 'owner']
         json_dict = {field: self.__dict__[field] for field in fields}
@@ -45,8 +36,6 @@ class TXO:
             inputs.append(json.loads(txo.to_json()))
             json_dict.update({'inputs': inputs})
         return json.dumps(json_dict, sort_keys=True, indent=4)
-
-
 
     @classmethod
     # from_tx_hash(self,tx_hash,n) - this classmethod should connect to the Bitcoin blockchain, and retrieve the nth output 
@@ -67,9 +56,11 @@ class TXO:
     def from_tx_hash(cls,tx_hash,n=0):
         tx = rpc_connection.getrawtransaction(tx_hash,True)
         print(tx['vout'])
-        owner = str(tx['scriptPubKey']['addresses'][0])
+        owner = tx['scriptPubKey']['addresses'][0]
+        owner_str = str(owner)
+        value_satoshi = tx['value']/100000000
         print(owner)
-        return TXO(tx_hash=tx_hash, n=0, amount=tx['value'], owner='owner')
+        return TXO(tx_hash=tx_hash, n=0, amount=value_satoshi, owner=owner_str)
         #pass
         #YOUR CODE HERE
 
