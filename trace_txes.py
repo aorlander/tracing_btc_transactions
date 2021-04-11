@@ -53,7 +53,7 @@ class TXO:
             print(txo['n'])
             if txo['n']==n:
                 owner = txo['scriptPubKey']['addresses']
-                value_satoshi = txo['value']
+                value_satoshi = txo['value'] * 100000000
         return TXO(tx_hash=tx_hash, n=n, amount=value_satoshi, owner=owner, time=time)
 
     # get_inputs(self,depth) - this method should connect to the Bitcoin blockchain, and populate the list of inputs, 
