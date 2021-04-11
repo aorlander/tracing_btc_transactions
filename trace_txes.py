@@ -59,8 +59,9 @@ class TXO:
         owner = tx['scriptPubKey']['addresses'][0]
         owner_str = str(owner)
         value_satoshi = tx['value']/100000000
-        print(owner)
-        return TXO(tx_hash=tx_hash, n=0, amount=value_satoshi, owner=owner_str)
+        time = datetime.fromtimestamp(tx['time'])
+        
+        return TXO(tx_hash=tx_hash, n=0, amount=value_satoshi, owner=owner_str, time=time)
         #pass
         #YOUR CODE HERE
 
