@@ -50,9 +50,8 @@ class TXO:
         tx = rpc_connection.getrawtransaction(tx_hash,True)
         time = datetime.fromtimestamp(tx['time'])
         for txo in tx['vout']:
-            print(txo['n'])
             if txo['n']==n:
-                owner = txo['scriptPubKey']['addresses']
+                owner = txo['scriptPubKey']['addresses'][0]
                 value_satoshi = txo['value'] * 100000000
         return TXO(tx_hash=tx_hash, n=n, amount=value_satoshi, owner=owner, time=time)
 
