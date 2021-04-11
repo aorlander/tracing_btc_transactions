@@ -49,14 +49,11 @@ class TXO:
     def from_tx_hash(cls,tx_hash,n=0):
         tx = rpc_connection.getrawtransaction(tx_hash,True)
         time = datetime.fromtimestamp(tx['time'])
-
-        #print(tx['vout'])
         for txo in tx['vout']:
             print(txo['n'])
             if txo['n']==n:
-                owner = str(txo['scriptPubKey']['addresses'])
+                owner = txo['scriptPubKey']['addresses']
                 value_satoshi = txo['value']/100000000
-            
         return TXO(tx_hash=tx_hash, n=n, amount=value_satoshi, owner=owner, time=time)
 
     # get_inputs(self,depth) - this method should connect to the Bitcoin blockchain, and populate the list of inputs, 
