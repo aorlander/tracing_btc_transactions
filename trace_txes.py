@@ -44,7 +44,6 @@ class TXO:
             inputs = json_dict.get('inputs', [])
             inputs.append(json.loads(txo.to_json()))
             json_dict.update({'inputs': inputs})
-        print(fields)
         return json.dumps(json_dict, sort_keys=True, indent=4)
 
 
@@ -56,6 +55,8 @@ class TXO:
     # 'inputs’. Note that the ‘time’ field should be converted to a datetime object (using the datetime.fromtimestamp method)
     def from_tx_hash(cls,tx_hash,n=0):
         tx = rpc_connection.getrawtransaction(tx_hash,True)
+        print(tx['vout'])
+        
         pass
         #YOUR CODE HERE
 
@@ -63,5 +64,10 @@ class TXO:
     # up to a depth d. In other words, if d=1  it should create TXO objects to populate self.inputs with the appropriate 
     # TXO objects. If d=2  it should also populate the inputs field of each of the TXOs in self.inputs etc.
     def get_inputs(self,d=1):
+        
         pass
         #YOUR CODE HERE
+       
+
+      
+  
