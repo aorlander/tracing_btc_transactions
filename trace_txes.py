@@ -41,8 +41,9 @@ class TXO:
     # ‘owner’ and ‘time’ set to the values retrieved from the blockchain. This method does not need to initialize the list 
     # 'inputs’. Note that the ‘time’ field should be converted to a datetime object (using the datetime.fromtimestamp method)
     def from_tx_hash(cls,tx_hash,n=0):
-        pass
         tx = rpc_connection.getrawtransaction(tx_hash,True)
+        pass
+        
 
         #YOUR CODE HERE
 
@@ -50,7 +51,8 @@ class TXO:
     # up to a depth d. In other words, if d=1  it should create TXO objects to populate self.inputs with the appropriate 
     # TXO objects. If d=2  it should also populate the inputs field of each of the TXOs in self.inputs etc.
     def get_inputs(self,d=1):
+        print(self)
         pass
         #YOUR CODE HERE
-        print(self)
+       
 
