@@ -26,14 +26,27 @@ class TXO:
             ret += tx.__str__(level+1)
         return ret
 
+    #def to_json(self):
+    #    fields = ['tx_hash','n','amount','owner']
+    #    json_dict = { field: self.__dict__[field] for field in fields }
+    #    json_dict.update( {'time': datetime.timestamp(self.time) } )
+    #    if len(self.inputs) > 0:
+    #        for txo in self.inputs:
+    #            json_dict.update( {'inputs': json.loads(txo.to_json()) } )
+    #    return json.dumps(json_dict, sort_keys=True, indent=4)
+      
     def to_json(self):
-        fields = ['tx_hash','n','amount','owner']
-        json_dict = { field: self.__dict__[field] for field in fields }
-        json_dict.update( {'time': datetime.timestamp(self.time) } )
-        if len(self.inputs) > 0:
-            for txo in self.inputs:
-                json_dict.update( {'inputs': json.loads(txo.to_json()) } )
+        fields = ['tx_hash', 'n', 'amount', 'owner']
+        json_dict = {field: self.__dict__[field] for field in fields}
+        json_dict.update({'time': datetime.timestamp(self.time)})
+        if len(self.inputs) &gt > 0:
+          for txo in self.inputs:
+            inputs = json_dict.get('inputs', [])
+            inputs.append(json.loads(txo.to_json()))
+            json_dict.update({'inputs': inputs})
         return json.dumps(json_dict, sort_keys=True, indent=4)
+
+
 
     @classmethod
     # from_tx_hash(self,tx_hash,n) - this classmethod should connect to the Bitcoin blockchain, and retrieve the nth output 
@@ -41,10 +54,8 @@ class TXO:
     # ‘owner’ and ‘time’ set to the values retrieved from the blockchain. This method does not need to initialize the list 
     # 'inputs’. Note that the ‘time’ field should be converted to a datetime object (using the datetime.fromtimestamp method)
     def from_tx_hash(cls,tx_hash,n=0):
-        #tx = rpc_connection.getrawtransaction(tx_hash,True)
+        tx = rpc_connection.getrawtransaction(tx_hash,True)
         pass
-        
-
         #YOUR CODE HERE
 
     # get_inputs(self,depth) - this method should connect to the Bitcoin blockchain, and populate the list of inputs, 
@@ -53,5 +64,3 @@ class TXO:
     def get_inputs(self,d=1):
         pass
         #YOUR CODE HERE
-       
-
