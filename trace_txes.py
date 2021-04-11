@@ -68,8 +68,8 @@ class TXO:
     # up to a depth d. In other words, if d=1  it should create TXO objects to populate self.inputs with the appropriate 
     # TXO objects. If d=2  it should also populate the inputs field of each of the TXOs in self.inputs etc.
     def get_inputs(self,d=1):
+        return 0
         
-        pass
         #YOUR CODE HERE
        
 
