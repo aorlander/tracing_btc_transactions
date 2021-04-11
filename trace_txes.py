@@ -44,6 +44,7 @@ class TXO:
             inputs = json_dict.get('inputs', [])
             inputs.append(json.loads(txo.to_json()))
             json_dict.update({'inputs': inputs})
+        print(fields)
         return json.dumps(json_dict, sort_keys=True, indent=4)
 
 
