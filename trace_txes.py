@@ -67,7 +67,7 @@ class TXO:
     def from_tx_hash(cls,tx_hash,n=0):
         tx = rpc_connection.getrawtransaction(tx_hash,True)
         print(tx['vout'])
-        owner = str(tx[‘scriptPubKey’][‘addresses’][0])
+        owner = str(tx['scriptPubKey']['addresses'][0])
         print(owner)
         return TXO(tx_hash=tx_hash, n=0, amount=tx['value'], owner='owner')
         #pass
