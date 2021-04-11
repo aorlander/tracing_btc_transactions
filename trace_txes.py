@@ -41,7 +41,7 @@ class TXO:
     # ‘owner’ and ‘time’ set to the values retrieved from the blockchain. This method does not need to initialize the list 
     # 'inputs’. Note that the ‘time’ field should be converted to a datetime object (using the datetime.fromtimestamp method)
     def from_tx_hash(cls,tx_hash,n=0):
-        tx = rpc_connection.getrawtransaction(tx_hash,True)
+        #tx = rpc_connection.getrawtransaction(tx_hash,True)
         pass
         
 
