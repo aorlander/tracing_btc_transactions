@@ -44,26 +44,18 @@ class TXO:
     # 'inputs’. Note that the ‘time’ field should be converted to a datetime object (using the datetime.fromtimestamp method)
 
 
-#There are five variables you’ll need to set. These are:
-#Tx_hash, which you already got passed to you,
-#time(using datetime.fromtimestamp(time)),
-#n,
-#address (this is [‘scriptPubKey’][‘addresses’][0] to string), and,
-#the value in Satoshi (100000000 within one BTC).
 #All of those can be found within tx[‘vout’] if you iterate for the one with the n you are looking for.
-#Then once you’ve determined these, you just return TXO(tx_hash=tx_hash, etc…)
 
     def from_tx_hash(cls,tx_hash,n=0):
         tx = rpc_connection.getrawtransaction(tx_hash,True)
-        #print(tx['vout'])
         owner = tx['scriptPubKey']['addresses'][0]
         owner_str = str(owner)
         value_satoshi = tx['value']/100000000
         time = datetime.fromtimestamp(tx['time'])
-        
+        print(tx['vout'])
+         
+
         return TXO(tx_hash=tx_hash, n=0, amount=value_satoshi, owner=owner_str, time=time)
-        #pass
-        #YOUR CODE HERE
 
     # get_inputs(self,depth) - this method should connect to the Bitcoin blockchain, and populate the list of inputs, 
     # up to a depth d. In other words, if d=1  it should create TXO objects to populate self.inputs with the appropriate 
@@ -71,7 +63,6 @@ class TXO:
     def get_inputs(self,d=1):
         return 0
         
-        #YOUR CODE HERE
        
 
       
