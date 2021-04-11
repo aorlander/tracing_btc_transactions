@@ -54,9 +54,8 @@ class TXO:
     # get_inputs(self,depth) - this method should connect to the Bitcoin blockchain, and populate the list of inputs, 
     # up to a depth d. In other words, if d=1  it should create TXO objects to populate self.inputs with the appropriate 
     # TXO objects. If d=2  it should also populate the inputs field of each of the TXOs in self.inputs etc.
-    #def get_inputs(self,d=1):
-
-    #    pass
+    def get_inputs(self,d=1):
+        pass
         
        
 
